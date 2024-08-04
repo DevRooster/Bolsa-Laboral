@@ -31,7 +31,6 @@ public class EstudianteController {
     @PutMapping
     public ResponseEntity<DatPersonales> actualizar(@RequestBody DatPersonales datPersonales) {
         return ResponseEntity.ok(estudianteService.actualizar(datPersonales));
-
     }
 
     @DeleteMapping("/{id}")
