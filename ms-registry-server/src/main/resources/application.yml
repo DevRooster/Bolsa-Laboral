@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: ms-registry-service
+  profiles:
+    active: development
+  config:
+    import: optional:configserver:http://dev:rooster@localhost:7070

@@ -15,5 +15,5 @@ spring:
 
   security:
     user:
-      name: root
+      name: dev
       password: rooster
