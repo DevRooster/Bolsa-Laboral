@@ -1,17 +1,18 @@
-package dev.rooster.ms_auth.service.impl;
+package pe.upeu.auth.service.impl;
 
-import java.util.Optional;
+import pe.upeu.auth.dto.AuthUserDto;
 
+import pe.upeu.auth.entity.AuthUser;
+
+import pe.upeu.auth.entity.TokenDto;
+import pe.upeu.auth.repository.AuthRepository;
+import pe.upeu.auth.security.JwtProvider;
+import pe.upeu.auth.service.AuthUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import dev.rooster.ms_auth.dto.AuthUserDto;
-import dev.rooster.ms_auth.entity.AuthUser;
-import dev.rooster.ms_auth.entity.TokenDto;
-import dev.rooster.ms_auth.security.JwtProvider;
-import dev.rooster.ms_auth.repository.AuthRepository;
-import dev.rooster.ms_auth.service.AuthUserService;
+import java.util.Optional;
 
 @Service
 public class AuthUserServiceImpl implements AuthUserService {
@@ -48,7 +49,7 @@ public class AuthUserServiceImpl implements AuthUserService {
 
     @Override
     public TokenDto validate(String token) {
-        if (!jwtProvider.validate(token))
+       if (!jwtProvider.validate(token))
             return null;
         String username = jwtProvider.getUserNameFromToken(token);
         if (!authRepository.findByUserName(username).isPresent())

@@ -1,13 +1,13 @@
-package dev.rooster.ms_auth;
+package pe.upeu.auth;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MsAuthApplicationTests {
+class AuthApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }

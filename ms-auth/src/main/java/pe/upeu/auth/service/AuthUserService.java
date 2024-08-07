@@ -1,8 +1,8 @@
-package dev.rooster.ms_auth.service;
+package pe.upeu.auth.service;
 
-import dev.rooster.ms_auth.dto.AuthUserDto;
-import dev.rooster.ms_auth.entity.AuthUser;
-import dev.rooster.ms_auth.entity.TokenDto;
+import pe.upeu.auth.dto.AuthUserDto;
+import pe.upeu.auth.entity.AuthUser;
+import pe.upeu.auth.entity.TokenDto;
 
 public interface AuthUserService {
     public AuthUser save(AuthUserDto authUserDto);
@@ -10,4 +10,5 @@ public interface AuthUserService {
     public TokenDto login(AuthUserDto authUserDto);
 
     public TokenDto validate(String token);
+
 }

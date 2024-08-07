@@ -1,6 +1,10 @@
-package dev.rooster.ms_auth.dto;
+package pe.upeu.auth.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 @Data
 @Builder

@@ -1,14 +1,13 @@
-package dev.rooster.ms_auth.security;
+package pe.upeu.auth.security;
 
+import pe.upeu.auth.entity.AuthUser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import jakarta.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import dev.rooster.ms_auth.entity.AuthUser;
 
+import javax.annotation.PostConstruct;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
@@ -42,15 +41,15 @@ public class JwtProvider {
         try {
             Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
             return true;
-        } catch (Exception e) {
+        }catch (Exception e){
             return false;
         }
     }
 
-    public String getUserNameFromToken(String token) {
+    public String getUserNameFromToken(String token){
         try {
             return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
-        } catch (Exception e) {
+        }catch (Exception e) {
             return "bad token";
         }
     }
