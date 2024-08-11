@@ -1,4 +1,6 @@
-package dev.rooster.ms_estudiante.entity;
+package dev.rooster.ms_docente.entity;
+
+import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,14 +10,16 @@ import lombok.Data;
 
 @Entity
 @Data
-public class DatPersonales {
+public class Docente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private String apellido;
     private String dni;
-    private String genero;
-    private Integer edad;
+    private Date fechaNacimiento;
+    private String direccion;
+    private String telefono;
     private String email;
+    private Date fechaContratacion;
 }

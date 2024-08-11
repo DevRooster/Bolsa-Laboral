@@ -19,9 +19,13 @@ spring:
           uri: lb://ms-estudiante-service
           predicates:
             - Path=/estudiante/**
-          filters:
-            - AuthFilter
         - id: ms-auth-service
           uri: lb://ms-auth-service
           predicates:
             - Path=/auth/**
+          filters:
+            - AuthFilter
+        - id: ms-docente-service
+          uri: lb://ms-docente-service
+          predicates:
+            - Path=/docente/**
