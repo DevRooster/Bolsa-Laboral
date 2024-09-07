@@ -1,4 +1,4 @@
-package dev.rooster.ms_gateway_server.config;
+package com.example.msgatewayserver.config;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
@@ -13,3 +13,4 @@ public class WebClientConfig {
         return WebClient.builder();
     }
 }
+

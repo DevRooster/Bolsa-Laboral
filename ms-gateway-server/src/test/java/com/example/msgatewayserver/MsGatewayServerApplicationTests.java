@@ -1,4 +1,4 @@
-package dev.rooster.ms_gateway_server;
+package com.example.msgatewayserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

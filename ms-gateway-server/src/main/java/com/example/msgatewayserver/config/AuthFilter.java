@@ -1,6 +1,7 @@
-package dev.rooster.ms_gateway_server.config;
+package com.example.msgatewayserver.config;
 
-import dev.rooster.ms_gateway_server.dto.TokenDto;
+
+import com.example.msgatewayserver.dto.TokenDto;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
@@ -49,3 +50,4 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
     public static class Config {
     }
 }
+

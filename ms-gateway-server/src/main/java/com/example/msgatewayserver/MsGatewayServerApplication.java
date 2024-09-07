@@ -1,4 +1,4 @@
-package dev.rooster.ms_gateway_server;
+package com.example.msgatewayserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
