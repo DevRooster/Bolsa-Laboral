@@ -24,4 +24,4 @@ spring:
         - id: ms-empresa-service
           uri: lb://ms-empresa-service
           predicates:
-            -Path=/empresa/**
+            - Path=/empresa/**
