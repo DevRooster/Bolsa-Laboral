@@ -7,7 +7,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/EnriqueMV18/Portal-Academico.git # ruta del repositorio git
+          uri: https://github.com/DevRooster/Bolsa-Laboral.git # ruta del repositorio git
           searchPaths: config-data
           #username:
           #password:
