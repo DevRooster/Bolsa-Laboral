@@ -1,7 +1,0 @@
-spring:
-    application:
-        name: ms-empresa-service
-    profiles:
-        active: development
-    config:
-        import: optional:configserver:http://dev:rooster@localhost:7070
