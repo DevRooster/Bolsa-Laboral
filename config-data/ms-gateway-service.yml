@@ -21,3 +21,7 @@ spring:
             - Path=/auth/**
           filters:
             - AuthFilter
+        - id: ms-empresa-service
+          uri: lb://ms-empresa-service
+          predicates:
+            -Path=/empresa/**

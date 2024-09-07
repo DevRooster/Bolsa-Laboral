@@ -10,10 +10,11 @@ import io.swagger.v3.oas.models.info.License;
 @SpringBootApplication
 public class MsEstudianteApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MsEstudianteApplication.class, args);
-	}
-	@Bean
+    public static void main(String[] args) {
+        SpringApplication.run(MsEstudianteApplication.class, args);
+    }
+
+    @Bean
     public OpenAPI custumOpenAPI() {
         return new OpenAPI().info(new Info()
                 .title("OPEN API MICROSERVICIO ESTUDIANTE")
