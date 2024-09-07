@@ -10,9 +10,8 @@ public class Empresa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
-    private String apellido;
-    private String carrera;
-    private String universidad;
-    private String habilidades;
-    private String experiencia;
+    private String sector;
+    private String descripcion;
+    private String direccion;
+    private String telefono;
 }
