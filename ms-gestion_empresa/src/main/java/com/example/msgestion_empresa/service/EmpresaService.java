@@ -1,7 +1,7 @@
-package com.example.msgestion_estudiantes.service;
+package com.example.msgestion_empresa.service;
 
 
-import com.example.msgestion_estudiantes.entity.Empresa;
+import com.example.msgestion_empresa.entity.Empresa;
 
 import org.springframework.stereotype.Service;
 
@@ -10,8 +10,8 @@ import java.util.Optional;
 @Service
 public interface EmpresaService {
     List<Empresa> lista();
-    Estudiante guardar(Empresa empresa);
+    Empresa guardar(Empresa empresa);
     Optional<Empresa> buscarPorId(Integer id);
-    Estudiante actualizar(Empresa empresa);
+    Empresa actualizar(Empresa empresa);
     void eleminar(Integer id);
 }

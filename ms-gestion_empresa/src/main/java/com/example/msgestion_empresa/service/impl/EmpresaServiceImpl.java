@@ -1,8 +1,8 @@
-package com.example.msgestion_estudiantes.service.impl;
+package com.example.msgestion_empresa.service.impl;
 
-import com.example.msgestion_estudiantes.entity.Empresa;
-import com.example.msgestion_estudiantes.repository.EmpresaRepository;
-import com.example.msgestion_estudiantes.service.EmpresaService;
+import com.example.msgestion_empresa.entity.Empresa;
+import com.example.msgestion_empresa.repository.EmpresaRepository;
+import com.example.msgestion_empresa.service.EmpresaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class EmpresaServiceImpl implements EmpresaService {
     }
 
     @Override
-    public Estudiante guardar(Empresa empresa) {
+    public Empresa guardar(Empresa empresa) {
         return empresaRepository.save(empresa);
     }
 
@@ -30,7 +30,7 @@ public class EmpresaServiceImpl implements EmpresaService {
     }
 
     @Override
-    public Estudiante actualizar(Empresa empresa) {
+    public Empresa actualizar(Empresa empresa) {
         return empresaRepository.save(empresa);
     }
 

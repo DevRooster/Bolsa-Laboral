@@ -1,4 +1,4 @@
-package com.example.msgestion_estudiantes.entity;
+package com.example.msgestion_empresa.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

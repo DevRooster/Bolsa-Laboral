@@ -1,12 +1,11 @@
 package com.example.msgestion_empresa.controller;
 
-
-import com.example.msgestion_empresa.entity.Estudiante;
-import com.example.msgestion_empresa.service.EstudianteService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.example.msgestion_empresa.entity.Empresa;
+import com.example.msgestion_empresa.service.EmpresaService;
 
 import java.util.List;
 @RestController
