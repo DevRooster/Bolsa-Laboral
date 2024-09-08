@@ -12,6 +12,6 @@ public interface NotificacionService {
     List<Notificacion> lista();
     Notificacion guardar(Notificacion notificacion);
     Optional<Notificacion> buscarPorId(Integer id);
-    Oferta actualizar(Notificacion notificacion);
+    Notificacion actualizar(Notificacion notificacion);
     void eleminar(Integer id);
 }

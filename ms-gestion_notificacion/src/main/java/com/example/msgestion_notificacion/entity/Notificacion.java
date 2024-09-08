@@ -1,5 +1,6 @@
 package com.example.msgestion_notificacion.entity;
 
+import java.time.LocalDateTime;
 import jakarta.persistence.*;
 import lombok.Data;
 
