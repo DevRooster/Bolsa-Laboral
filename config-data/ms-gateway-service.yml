@@ -1,5 +1,5 @@
 server:
-  port: 82
+  port: 8080
 
 
 eureka:
@@ -41,6 +41,10 @@ spring:
           uri: lb://ms-gestionempresa-service
           predicates:
             - Path=/empresa/**
+        - id : ms-gestionoferta-service
+          uri: lb://ms-gestionoferta-service
+          predicates:
+            - Path=/oferta/**
 
 
 
