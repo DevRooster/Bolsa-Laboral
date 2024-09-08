@@ -1,10 +1,7 @@
 package com.example.msgestion_postulacion.controller;
 
-import com.example.msgestion_postulacion.entity.Oferta;
 import com.example.msgestion_postulacion.entity.Postulacion;
-import com.example.msgestion_postulacion.service.OfertaService;
 import com.example.msgestion_postulacion.service.PostulacionService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

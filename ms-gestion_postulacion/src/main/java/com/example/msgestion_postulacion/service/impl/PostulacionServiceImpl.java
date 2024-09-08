@@ -30,7 +30,7 @@ public class PostulacionServiceImpl implements PostulacionService {
     }
 
     @Override
-    public Oferta actualizar(Postulacion postulacion) {
+    public Postulacion actualizar(Postulacion postulacion) {
         return postulacionRepository.save(postulacion);
     }
 

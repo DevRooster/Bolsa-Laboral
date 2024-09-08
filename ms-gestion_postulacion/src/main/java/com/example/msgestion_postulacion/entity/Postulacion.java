@@ -11,15 +11,14 @@ public class Postulacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     //@ManyToOne
     //private Estudiante estudiante; // Relación con el estudiante que postula
 
     //@ManyToOne
     //private Oferta oferta; // Relación con la oferta a la que se postula
     
-    private EstadoPostulacion estado; // Enum: EN_REVISION, ACEPTADO, RECHAZADO
+    private String EstadoPostulacion; // EN_REVISION, ACEPTADO, RECHAZADO
 
     private LocalDate fechaPostulacion;
-
-    // Getters y Setters
 }
