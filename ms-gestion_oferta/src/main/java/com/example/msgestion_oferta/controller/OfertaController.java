@@ -1,7 +1,6 @@
 package com.example.msgestion_oferta.controller;
 
-
-import com.example.msgestion_oferta.entity.Estudiante;
+import com.example.msgestion_oferta.entity.Oferta;
 import com.example.msgestion_oferta.service.OfertaService;
 
 import org.springframework.beans.factory.annotation.Autowired;

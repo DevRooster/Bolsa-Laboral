@@ -12,6 +12,6 @@ public interface OfertaService {
     List<Oferta> lista();
     Oferta guardar(Oferta oferta);
     Optional<Oferta> buscarPorId(Integer id);
-    Estudiante actualizar(Oferta oferta);
+    Oferta actualizar(Oferta oferta);
     void eleminar(Integer id);
 }
