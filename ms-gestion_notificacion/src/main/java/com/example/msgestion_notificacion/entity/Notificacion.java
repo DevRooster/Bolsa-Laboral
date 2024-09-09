@@ -14,5 +14,6 @@ public class Notificacion {
     private LocalDateTime fechaEnvio;
 
     //@ManyToOne
-    //private Usuario usuario; // Relación con el usuario que recibe la notificación
+    //private Usuario usuario; 
+    // Relación con el usuario que recibe la notificación
 }

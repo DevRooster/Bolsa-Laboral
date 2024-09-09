@@ -53,9 +53,7 @@ spring:
           uri: lb://ms-gestionnotificacion-service
           predicates: 
             - Path=/notificacion/**
-
-
-
-
-
-
+        - id : ms-gestionseguimiento-service
+          uri: lb://ms-gestionseguimiento-service
+          predicates:
+            - Path=/seguimiento/**
