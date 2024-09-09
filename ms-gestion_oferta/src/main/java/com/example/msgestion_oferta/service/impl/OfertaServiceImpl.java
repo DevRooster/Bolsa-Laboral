@@ -20,7 +20,15 @@ public class OfertaServiceImpl implements OfertaService {
 
     @Override
     public List<Oferta> lista() {
-        return ofertaRepository.findAll();
+        List<Oferta> ofertas = ofertaRepository.findAll();
+        // Cargar datos de EmpresaDto para cada oferta
+        for (Oferta oferta : ofertas) {
+            if (oferta.getEmpresaId() != null) {
+                EmpresaDto empresaDto = empresaFeign.buscarPorId(oferta.getEmpresaId());
+                oferta.setEmpresaDto(empresaDto);
+            }
+        }
+        return ofertas;
     }
 
     @Override
@@ -30,7 +38,16 @@ public class OfertaServiceImpl implements OfertaService {
 
     @Override
     public Optional<Oferta> buscarPorId(Integer id) {
-        return ofertaRepository.findById(id);
+        Optional<Oferta> ofertaOptional = ofertaRepository.findById(id);
+        if (ofertaOptional.isPresent()) {
+            Oferta oferta = ofertaOptional.get();
+            if (oferta.getEmpresaId() != null) {
+                EmpresaDto empresaDto = empresaFeign.buscarPorId(oferta.getEmpresaId());
+                oferta.setEmpresaDto(empresaDto);
+            }
+            return Optional.of(oferta);
+        }
+        return Optional.empty();
     }
 
     @Override
@@ -43,6 +60,7 @@ public class OfertaServiceImpl implements OfertaService {
         ofertaRepository.deleteById(id);
 
     }
+
     // Método para obtener información de la empresa desde ms-gestion_empresa
     public EmpresaDto obtenerEmpresaPorId(Integer id) {
         return empresaFeign.buscarPorId(id);
