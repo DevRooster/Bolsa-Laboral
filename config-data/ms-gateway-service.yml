@@ -57,7 +57,3 @@ spring:
           uri: lb://ms-gestionseguimiento-service
           predicates:
             - Path=/seguimiento/**
-        - id: ms-gestiondocumento-service
-          uri: lb://ms-gestiondocumento-service
-          predicates:
-            - Path=/documento/**
