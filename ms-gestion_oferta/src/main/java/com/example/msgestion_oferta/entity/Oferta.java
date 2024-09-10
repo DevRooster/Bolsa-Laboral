@@ -15,7 +15,7 @@ public class Oferta {
     private String descripcion;
     private String ubicacion;
     private String tipoPracticante;
-    private String duracion;
+    private String duracion; //DIAS, MESES
 
     // Campo para almacenar el ID de la empresa asociada
     private Integer empresaId;

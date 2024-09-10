@@ -1,6 +1,5 @@
 package com.example.msgestion_estudiantes.entity;
 
-import com.example.msgestion_estudiantes.dto.AuthUserDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,11 +15,4 @@ public class Estudiante {
     private String universidad;
     private String habilidades;
     private String experiencia;
-
-    private Integer authUserId;
-    //MS AuthUser
-    @Transient
-    private AuthUserDto authUserDto;
-
-
 }
