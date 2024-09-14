@@ -18,7 +18,7 @@ public interface OfertaFeign {
         // Devuelve un objeto EstudianteDto con valores predeterminados
         OfertaDto ofertaFallback = new OfertaDto();
         ofertaFallback.setId(id);
-        ofertaFallback.setTitulo("Estudiante no disponible");
+        ofertaFallback.setTitulo("Oferta no disponible");
         // Establece otros valores predeterminados según tu estructura de EstudianteDto
         return ofertaFallback;
     }

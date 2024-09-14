@@ -17,7 +17,7 @@ public interface EmpresaFeign {
         // Devuelve un objeto EstudianteDto con valores predeterminados
         EmpresaDto empresaFallback = new EmpresaDto();
         empresaFallback.setId(id);
-        empresaFallback.setNombre("Estudiante no disponible");
+        empresaFallback.setNombre("Empresa no disponible");
         // Establece otros valores predeterminados según tu estructura de EstudianteDto
         return empresaFallback;
     }
