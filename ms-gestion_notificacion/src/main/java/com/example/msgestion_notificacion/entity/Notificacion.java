@@ -1,6 +1,7 @@
 package com.example.msgestion_notificacion.entity;
 
 import java.time.LocalDateTime;
+import com.example.msgestion_notificacion.dto.EstudianteDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,8 +13,11 @@ public class Notificacion {
     private Integer id;
     private String mensaje;
     private LocalDateTime fechaEnvio;
+ 
+    // Campo para almacenar el ID de la estudiante asociada
+    private Integer estudianteId;
 
-    //@ManyToOne
-    //private Usuario usuario; 
-    // Relación con el usuario que recibe la notificación
+    // Campo transitorio para almacenar datos de la estudiante sin persistencia
+    @Transient
+    private EstudianteDto estudianteDto;
 }
