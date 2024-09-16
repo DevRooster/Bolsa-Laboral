@@ -18,7 +18,14 @@ public class Estudiante {
     private String habilidades;
     private String experiencia;
 
-    private AuthUserDto authUser; // Relación con AuthUser
+    // Almacenar solo el ID del usuario autenticado
+    private Integer authUserId;
+
     @Transient
     private AuthUserDto authUserDto;
+
+    // Método setter para authUserDto
+    public void setAuthUserDto(AuthUserDto authUserDto) {
+        this.authUserDto = authUserDto;
+    }
 }

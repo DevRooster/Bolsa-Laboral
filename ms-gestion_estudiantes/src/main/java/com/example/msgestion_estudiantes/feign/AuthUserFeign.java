@@ -8,7 +8,7 @@ import com.example.msgestion_estudiantes.dto.AuthUserDto;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
-@FeignClient(name = "ms-auth-service",path = "/auth")
+@FeignClient(name = "ms-auth-service", path = "/auth")
 public interface AuthUserFeign {
     @CircuitBreaker(name = "authuserCB", fallbackMethod = "fallbackMethod")
     @GetMapping("/users/{id}")
