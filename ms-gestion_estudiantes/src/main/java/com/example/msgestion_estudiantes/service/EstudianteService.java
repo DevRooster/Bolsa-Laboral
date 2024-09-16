@@ -1,6 +1,7 @@
 package com.example.msgestion_estudiantes.service;
 
 
+import com.example.msgestion_estudiantes.dto.AuthUserDto;
 import com.example.msgestion_estudiantes.entity.Estudiante;
 
 import org.springframework.stereotype.Service;
@@ -14,4 +15,5 @@ public interface EstudianteService {
     Optional<Estudiante> buscarPorId(Integer id);
     Estudiante actualizar(Estudiante estudiante);
     void eleminar(Integer id);
+    AuthUserDto obtenerUsuarioPorId(Integer id);
 }
