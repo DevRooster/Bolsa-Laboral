@@ -31,12 +31,12 @@ spring:
           uri: lb://ms-gestionestudiantes-service
           predicates:
             - Path=/estudiante/**
+          filters:
+            - AuthFilter
         - id: ms-auth-service
           uri: lb://ms-auth-service
           predicates:
             - Path=/auth/**
-          filters:
-            - AuthFilter
         - id: ms-gestionempresa-service
           uri: lb://ms-gestionempresa-service
           predicates:
