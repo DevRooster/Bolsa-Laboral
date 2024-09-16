@@ -4,6 +4,8 @@ import pe.upeu.auth.dto.AuthUserDto;
 import pe.upeu.auth.entity.AuthUser;
 import pe.upeu.auth.entity.TokenDto;
 import pe.upeu.auth.service.AuthUserService;
+
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,5 +38,15 @@ public class AuthUserController {
         if (authUser == null)
             return ResponseEntity.badRequest().build();
         return ResponseEntity.ok(authUser);
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<AuthUser>> lista() {
+        return ResponseEntity.ok(authUserService.lista());
+    }
+
+    @GetMapping("/users/{id}")
+    public ResponseEntity<AuthUser> buscarPorId(@PathVariable Integer id) {
+        return ResponseEntity.of(authUserService.buscarPorId(id));
     }
 }
