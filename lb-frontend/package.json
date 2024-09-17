@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.3.1",
+    "axios": "^1.7.7",
     "framer-motion": "^11.5.4",
     "lb-frontend": "file:",
     "react": "^18.3.1",

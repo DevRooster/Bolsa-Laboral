@@ -1,13 +1,17 @@
-// src/pages/Register.jsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [userName, setUserName] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -20,26 +24,42 @@ const Register = () => {
     return 'bg-green-600';
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    setLoading(true);
+
     // Lógica para verificar que las contraseñas coinciden
     if (password !== confirmPassword) {
       setAlertMessage('Las contraseñas no coinciden.');
       setAlertType('error');
+      setLoading(false);
       return;
     }
-    
-    // Lógica para simular la creación de la cuenta
-    // Aquí deberías incluir la lógica real de creación de cuenta
-    const accountCreated = true; // Simulamos una cuenta creada exitosamente
 
-    if (accountCreated) {
-      setAlertMessage('Cuenta creada exitosamente.');
-      setAlertType('success');
-    } else {
-      setAlertMessage('Hubo un error al crear la cuenta.');
+    try {
+      // Realiza la solicitud de creación de usuario
+      const response = await axios.post('http://localhost:8080/auth/create', {
+        userName,
+        password,
+      });
+
+      if (response.status === 200) {
+        setAlertMessage('Cuenta creada exitosamente.');
+        setAlertType('success');
+        // Redirige al usuario al login después de 2 segundos
+        setTimeout(() => {
+          navigate('/login');
+        }, 2000);
+      } else {
+        setAlertMessage('Hubo un error al crear la cuenta.');
+        setAlertType('error');
+      }
+    } catch (error) {
+      console.error('Error:', error.response ? error.response.data : error.message);
+      setAlertMessage('Ocurrió un error al crear la cuenta.');
       setAlertType('error');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -63,6 +83,8 @@ const Register = () => {
             <input 
               type="text" 
               id="username" 
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
               className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-800 text-white"
               required
             />
@@ -120,8 +142,9 @@ const Register = () => {
           <button 
             type="submit" 
             className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            disabled={loading}
           >
-            Register
+            {loading ? 'Registrando...' : 'Register'}
           </button>
         </form>
         <div className="mt-6 text-center">

@@ -1,10 +1,8 @@
 // src/pages/Offers.jsx
 import React from 'react';
-import UserHomeLayout from '../layouts/UserHomeLayout';
 
 const Offers = () => {
     return (
-        <UserHomeLayout>
             <div className="p-4">
                 <h1 className="text-3xl font-bold mb-4">Ofertas Laborales</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -16,7 +14,6 @@ const Offers = () => {
                     {/* Repite tarjetas para otras ofertas */}
                 </div>
             </div>
-        </UserHomeLayout>
     );
 };
 
