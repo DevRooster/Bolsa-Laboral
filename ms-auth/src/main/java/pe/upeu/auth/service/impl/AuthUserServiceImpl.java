@@ -33,6 +33,7 @@ public class AuthUserServiceImpl implements AuthUserService {
         AuthUser authUser = AuthUser.builder()
                 .userName(authUserDto.getUserName())
                 .password(password)
+                .role(AuthUser.Role.USER_DEFAULT) // Asigna el rol por defecto
                 .build();
 
         return authRepository.save(authUser);
@@ -43,20 +44,27 @@ public class AuthUserServiceImpl implements AuthUserService {
         Optional<AuthUser> user = authRepository.findByUserName(authUserDto.getUserName());
         if (!user.isPresent())
             return null;
-        if (passwordEncoder.matches(authUserDto.getPassword(), user.get().getPassword()))
-            return new TokenDto(jwtProvider.createToken(user.get()));
+    
+        if (passwordEncoder.matches(authUserDto.getPassword(), user.get().getPassword())) {
+            // Devolver el token, id de usuario y rol
+            return new TokenDto(jwtProvider.createToken(user.get()), user.get().getId(), user.get().getRole().name());
+        }
+        
         return null;
     }
 
     @Override
     public TokenDto validate(String token) {
-       if (!jwtProvider.validate(token))
+        if (!jwtProvider.validate(token))
             return null;
+    
         String username = jwtProvider.getUserNameFromToken(token);
-        if (!authRepository.findByUserName(username).isPresent())
+        Optional<AuthUser> user = authRepository.findByUserName(username);
+        if (!user.isPresent())
             return null;
-
-        return new TokenDto(token);
+    
+        // Devolvemos el token, ID del usuario y rol
+        return new TokenDto(token, user.get().getId(), user.get().getRole().name());
     }
 
     @Override

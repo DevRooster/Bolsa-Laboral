@@ -19,9 +19,10 @@ public class AuthUserController {
     @PostMapping("/login")
     public ResponseEntity<TokenDto> login(@RequestBody AuthUserDto authUserDto) {
         TokenDto tokenDto = authUserService.login(authUserDto);
-        if (tokenDto == null)
+        if (tokenDto == null) {
             return ResponseEntity.badRequest().build();
-        return ResponseEntity.ok(tokenDto);
+        }
+        return ResponseEntity.ok(tokenDto); // Retorna el TokenDto con el rol
     }
 
     @PostMapping("/validate")

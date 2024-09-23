@@ -1,19 +1,28 @@
-// src/App.jsx
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import Register from './pages/Register';
-import Offers from './pages/Offers';
-import { Login } from './pages/Login';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginAdmin from './pages/admin/LoginAdmin';
+import DashboardAdmin from './pages/admin/DashboardAdmin';
+import UsersCtrl from './pages/admin/UsersCtrl';
+import EmpresaCtrl from './pages/admin/EmpresaCtrl';
+import EstudianteCtrl from './pages/admin/EstudianteCtrl';
+import NotificacionCtrl from './pages/admin/NotificacionCtrl';
+import OfertaCtrl from './pages/admin/OfertaCtrl';
+import PostulacionCtrl from './pages/admin/PostulacionCtrl';
+import SeguimientoCtrl from './pages/admin/SeguimientoCtrl';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path="/offers" element={<Offers />} />
+        <Route path="/login/admin" element={<LoginAdmin />} />
+        <Route path="/admin/dashboard" element={<DashboardAdmin />}>
+          <Route path="users" element={<UsersCtrl />} />
+          <Route path="empresa" element={<EmpresaCtrl />} />
+          <Route path="estudiante" element={<EstudianteCtrl />} />
+          <Route path="notificacion" element={<NotificacionCtrl />} />
+          <Route path="oferta" element={<OfertaCtrl />} />
+          <Route path="postulacion" element={<PostulacionCtrl />} />
+          <Route path="seguimiento" element={<SeguimientoCtrl />} />
+        </Route>
       </Routes>
     </Router>
   );
