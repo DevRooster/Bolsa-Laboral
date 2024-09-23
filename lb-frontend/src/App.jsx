@@ -8,6 +8,8 @@ import NotificacionCtrl from './pages/admin/NotificacionCtrl';
 import OfertaCtrl from './pages/admin/OfertaCtrl';
 import PostulacionCtrl from './pages/admin/PostulacionCtrl';
 import SeguimientoCtrl from './pages/admin/SeguimientoCtrl';
+import LoginUser from './pages/users/LoginUser';
+import DashboardUser from './pages/users/DashboardUser';
 
 function App() {
   return (
@@ -22,6 +24,10 @@ function App() {
           <Route path="oferta" element={<OfertaCtrl />} />
           <Route path="postulacion" element={<PostulacionCtrl />} />
           <Route path="seguimiento" element={<SeguimientoCtrl />} />
+        </Route>
+        <Route path="/login/user" element={<LoginUser />} />
+        <Route path="/user/dashboard" element={<DashboardUser />}>
+        
         </Route>
       </Routes>
     </Router>

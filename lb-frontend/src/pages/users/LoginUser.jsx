@@ -1,4 +1,4 @@
-// src/pages/users/LoginUser.jsx
+// src/pages/user/LoginUser.jsx
 
 import React, { useState } from 'react';
 import { apiPost, setAuthToken } from '../../services/api'; // Asegúrate de que estas funciones existan
@@ -13,9 +13,11 @@ const LoginUser = () => {
     e.preventDefault();
     try {
       const response = await apiPost('/auth/login', { userName, password });
+      
       if (response.token && response.role === "USER_DEFAULT") {
         setAuthToken(response.token);
-        navigate('/dashboard/user');
+        localStorage.setItem('userRole', response.role);
+        navigate('/user/dashboard'); // Redirige a la ruta para usuarios
       } else {
         alert('Credenciales incorrectas o rol no permitido');
       }
