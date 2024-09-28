@@ -2,8 +2,8 @@ import inquirer from 'inquirer'; // Usamos import para ESM
 import { exec } from 'child_process';
 
 // Función para iniciar un microservicio
-function iniciarMicroservicio(ruta) {
-  exec(`start cmd /k "cd ${ruta} && mvn spring-boot:run"`, (error) => {
+function iniciarMicroservicio(ruta, comando) {
+  exec(`start cmd /k "cd ${ruta} && ${comando}"`, (error) => {
     if (error) {
       console.error(`Error al iniciar: ${error.message}`);
       return;
@@ -16,12 +16,13 @@ async function mostrarMenuPrincipal() {
   console.clear(); // Limpiar la consola
   const respuesta = await inquirer.prompt([
     {
-      type: 'list', 
+      type: 'list',
       name: 'opcion',
       message: 'Seleccione una opción:',
       choices: [
         'Iniciar Microservicios',
         'Detener Microservicios',
+        'Iniciar Frontend', // Nueva opción para iniciar el frontend
         'Salir'
       ]
     }
@@ -33,6 +34,10 @@ async function mostrarMenuPrincipal() {
       break;
     case 'Detener Microservicios':
       detenerMicroservicios();
+      break;
+    case 'Iniciar Frontend': // Caso para iniciar el frontend
+      iniciarFrontend();
+      await mostrarMenuPrincipal(); // Volver al menú principal
       break;
     case 'Salir':
       console.log('Saliendo del programa...');
@@ -61,7 +66,7 @@ async function iniciarMicroserviciosMenu() {
 
   const respuesta = await inquirer.prompt([
     {
-      type: 'list', // Usar 'list' para mantener la selección clara
+      type: 'list',
       name: 'microservicio',
       message: 'Seleccione el microservicio que desea iniciar:',
       choices: microservicios
@@ -80,7 +85,7 @@ async function iniciarMicroserviciosMenu() {
     case 'ms-gestion_postulacion':
     case 'ms-gestion_seguimiento':
       console.log(`Iniciando ${respuesta.microservicio}...`);
-      iniciarMicroservicio(`D:\\Bolsa-Laboral\\${respuesta.microservicio}`);
+      iniciarMicroservicio(`D:\\Bolsa-Laboral\\${respuesta.microservicio}`, 'mvn spring-boot:run');
       break;
     case 'Regresar al menú anterior':
       return mostrarMenuPrincipal(); // Regresar al menú principal
@@ -89,6 +94,12 @@ async function iniciarMicroserviciosMenu() {
   }
 
   await mostrarMenuPrincipal(); // Volver al menú principal
+}
+
+// Función para iniciar el frontend
+function iniciarFrontend() {
+  console.log('Iniciando el frontend...');
+  iniciarMicroservicio(`D:\\Bolsa-Laboral\\lb-frontend`, 'npm run dev'); // Ruta actualizada a la carpeta "lb-frontend"
 }
 
 // Función para detener todos los microservicios
