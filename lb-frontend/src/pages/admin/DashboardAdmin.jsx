@@ -9,9 +9,7 @@ const DashboardAdmin = () => {
   return (
     <div className="flex flex-col h-screen bg-gradient-to-r from-blue-50 to-indigo-100">
       <AdminNavbar />
-      <div className="flex-1 p-6 bg-white shadow-md rounded-lg overflow-auto">
-        <h2 className="text-3xl font-bold mb-4 text-gray-800">Dashboard Admin</h2>
-
+      <div className="flex-1 p-4 bg-white shadow-md rounded-lg overflow-auto">
         {isDashboardRoot && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Tarjeta de Usuarios */}

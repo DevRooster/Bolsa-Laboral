@@ -31,46 +31,33 @@ spring:
           uri: lb://ms-gestionestudiantes-service
           predicates:
             - Path=/estudiante/**
-          filters:
-            - AuthFilter  # Aplica el filtro aquí, protegiendo la ruta de estudiantes
 
         - id: ms-auth-service
           uri: lb://ms-auth-service
           predicates:
             - Path=/auth/**
-          # No se aplica AuthFilter aquí porque no queremos que la ruta de autenticación esté protegida
 
         - id: ms-gestionempresa-service
           uri: lb://ms-gestionempresa-service
           predicates:
             - Path=/empresa/**
-          filters:
-            - AuthFilter  # Aplica el filtro aquí, protegiendo la ruta de empresas
 
         - id: ms-gestionoferta-service
           uri: lb://ms-gestionoferta-service
           predicates:
             - Path=/oferta/**
-          filters:
-            - AuthFilter  # Aplica el filtro aquí, protegiendo la ruta de ofertas
 
         - id: ms-gestionpostulacion-service
           uri: lb://ms-gestionpostulacion-service
           predicates:
             - Path=/postulacion/**
-          filters:
-            - AuthFilter  # Aplica el filtro aquí, protegiendo la ruta de postulaciones
 
         - id: ms-gestionnotificacion-service
           uri: lb://ms-gestionnotificacion-service
           predicates: 
             - Path=/notificacion/**
-          filters:
-            - AuthFilter  # Aplica el filtro aquí, protegiendo la ruta de notificaciones
 
         - id: ms-gestionseguimiento-service
           uri: lb://ms-gestionseguimiento-service
           predicates:
             - Path=/seguimiento/**
-          filters:
-            - AuthFilter  # Aplica el filtro aquí, protegiendo la ruta de seguimiento

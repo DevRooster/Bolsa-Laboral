@@ -1,3 +1,5 @@
+// src/components/AdminNavbar.jsx
+
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -6,7 +8,7 @@ const AdminNavbar = () => {
 
   // Función para manejar el cierre de sesión
   const handleLogout = () => {
-    // Eliminar el token de localStorage (o sessionStorage si prefieres)
+    // Eliminar el token de localStorage
     localStorage.removeItem('authToken');
 
     // Redirigir al usuario a la página de login
@@ -135,7 +137,7 @@ const AdminNavbar = () => {
         </li>
         <li>
           <button
-            onClick={handleLogout}  // Llama a la función de cierre de sesión
+            onClick={handleLogout} // Llama a la función de cierre de sesión
             className="text-red-500 flex items-center space-x-2"
             style={{ transition: 'color 0.3s' }}
           >
