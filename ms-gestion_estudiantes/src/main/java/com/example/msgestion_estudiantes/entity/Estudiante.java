@@ -12,11 +12,12 @@ public class Estudiante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
-    private String apellido;
+    private String apellidoPaterno;
+    private String apellidoMaterno;
     private String carrera;
     private String universidad;
     private String habilidades;
-    private String experiencia;
+    private String horasCompletadas;
 
     // Almacenar solo el ID del usuario autenticado
     private Integer authUserId;
