@@ -13,12 +13,12 @@ const UsersCtrl = () => {
     const [newUser, setNewUser] = useState({ userName: '', password: '' }); // Estado para el nuevo usuario
     const [newStudent, setNewStudent] = useState({
         nombre: '',
-        apellido: '',
+        apellidoPaterno: '',
+        apellidoMaterno: '',
         carrera: '',
         universidad: 'Universidad Peruana Union', // Universidad fija
         habilidades: '',
-        experiencia: '',
-        experienciaUnit: 'Año', // Unidad de experiencia
+        horasCompletadas: 0, // Horas por defecto a 0
         authUserId: null
     }); // Estado para el nuevo estudiante
     const [createdUserId, setCreatedUserId] = useState(null); // Estado para guardar el ID del usuario creado
@@ -93,12 +93,12 @@ const UsersCtrl = () => {
             setStudentModalIsOpen(false);
             setNewStudent({
                 nombre: '',
-                apellido: '',
+                apellidoPaterno: '',
+                apellidoMaterno: '',
                 carrera: '',
                 universidad: 'Universidad Peruana Union',
                 habilidades: '',
-                experiencia: '',
-                experienciaUnit: 'Año',
+                horasCompletadas: 0, // Reiniciar a 0
                 authUserId: null
             });
         } catch (error) {
@@ -204,9 +204,9 @@ const UsersCtrl = () => {
                     </div>
                     <button
                         type="submit"
-                        className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-200"
+                        className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 hover:shadow-lg transition-all duration-200"
                     >
-                        Crear
+                        Crear Usuario
                     </button>
                 </form>
             </Modal>
@@ -216,104 +216,106 @@ const UsersCtrl = () => {
                 isOpen={studentModalIsOpen}
                 onRequestClose={() => setStudentModalIsOpen(false)}
                 contentLabel="Crear Estudiante"
-                className="w-full max-w-xl p-4 mx-auto my-20 bg-white rounded-lg shadow-lg"
+                className="w-full max-w-xl p-8 mx-auto my-20 bg-white rounded-lg shadow-lg"
                 overlayClassName="fixed inset-0 bg-black bg-opacity-50 z-50"
             >
                 <h2 className="text-2xl font-semibold mb-6">Crear Estudiante</h2>
-                <form onSubmit={handleStudentSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="mb-4">
-                        <label className="block mb-2 text-gray-700">Username:</label>
-                        <input
-                            type="text"
-                            name="userName"
-                            value={createdUserName}
-                            disabled
-                            className="border border-gray-300 p-3 w-full rounded-md bg-gray-200 cursor-not-allowed"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block mb-2 text-gray-700">Nombre:</label>
-                        <input
-                            type="text"
-                            name="nombre"
-                            value={newStudent.nombre}
-                            onChange={handleStudentInputChange}
-                            required
-                            className="border border-gray-300 p-3 w-full rounded-md focus:outline-none focus:ring focus:ring-blue-300 transition duration-200"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block mb-2 text-gray-700">Apellido:</label>
-                        <input
-                            type="text"
-                            name="apellido"
-                            value={newStudent.apellido}
-                            onChange={handleStudentInputChange}
-                            required
-                            className="border border-gray-300 p-3 w-full rounded-md focus:outline-none focus:ring focus:ring-blue-300 transition duration-200"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block mb-2 text-gray-700">Carrera:</label>
-                        <select
-                            name="carrera"
-                            value={newStudent.carrera}
-                            onChange={handleStudentInputChange}
-                            required
-                            className="border border-gray-300 p-3 w-full rounded-md focus:outline-none focus:ring focus:ring-blue-300 transition duration-200"
-                        >
-                            <option value="">Seleccionar Carrera</option>
-                            <option value="Ingeniería de Sistemas">Ingeniería de Sistemas</option>
-                            <option value="Ingeniería Civil">Ingeniería Civil</option>
-                            <option value="Ingeniería Ambiental">Ingeniería Ambiental</option>
-                        </select>
-                    </div>
-                    <div className="mb-4">
-                        <label className="block mb-2 text-gray-700">Universidad:</label>
-                        <input
-                            type="text"
-                            value={newStudent.universidad}
-                            disabled
-                            className="border border-gray-300 p-4 w-full rounded-md bg-gray-200 cursor-not-allowed"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block mb-2 text-gray-700">Habilidades:</label>
-                        <input
-                            type="text"
-                            name="habilidades"
-                            value={newStudent.habilidades}
-                            onChange={handleStudentInputChange}
-                            required
-                            className="border border-gray-300 p-3 w-full rounded-md focus:outline-none focus:ring focus:ring-blue-300 transition duration-200"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block mb-2 text-gray-700">Experiencia:</label>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <form onSubmit={handleStudentSubmit}>
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="mb-4">
+                            <label className="block mb-2 text-gray-700">Username:</label>
                             <input
-                                type="number"
-                                name="experiencia"
-                                value={newStudent.experiencia}
+                                type="text"
+                                name="userName"
+                                value={createdUserName}
+                                disabled
+                                className="border border-gray-300 p-3 w-full rounded-md bg-gray-200 cursor-not-allowed"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label className="block mb-2 text-gray-700">Nombre:</label>
+                            <input
+                                type="text"
+                                name="nombre"
+                                value={newStudent.nombre}
                                 onChange={handleStudentInputChange}
                                 required
                                 className="border border-gray-300 p-3 w-full rounded-md focus:outline-none focus:ring focus:ring-blue-300 transition duration-200"
                             />
-                            <select
-                                name="experienciaUnit"
-                                value={newStudent.experienciaUnit}
+                        </div>
+                        <div className="mb-4">
+                            <label className="block mb-2 text-gray-700">Apellido Paterno:</label>
+                            <input
+                                type="text"
+                                name="apellidoPaterno"
+                                value={newStudent.apellidoPaterno}
                                 onChange={handleStudentInputChange}
+                                required
+                                className="border border-gray-300 p-3 w-full rounded-md focus:outline-none focus:ring focus:ring-blue-300 transition duration-200"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label className="block mb-2 text-gray-700">Apellido Materno:</label>
+                            <input
+                                type="text"
+                                name="apellidoMaterno"
+                                value={newStudent.apellidoMaterno}
+                                onChange={handleStudentInputChange}
+                                required
+                                className="border border-gray-300 p-3 w-full rounded-md focus:outline-none focus:ring focus:ring-blue-300 transition duration-200"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label className="block mb-2 text-gray-700">Carrera:</label>
+                            <select
+                                name="carrera"
+                                value={newStudent.carrera}
+                                onChange={handleStudentInputChange}
+                                required
                                 className="border border-gray-300 p-3 w-full rounded-md focus:outline-none focus:ring focus:ring-blue-300 transition duration-200"
                             >
-                                <option value="Año">Año</option>
-                                <option value="Mes">Mes</option>
-                                <option value="Día">Día</option>
+                                <option value="" disabled>Select Carrera</option>
+                                <option value="Ingeniería de Sistemas">Ingeniería de Sistemas</option>
+                                <option value="Ingeniería Civil">Ingeniería Civil</option>
+                                <option value="Ingeniería Ambiental">Ingeniería Ambiental</option>
                             </select>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block mb-2 text-gray-700">Universidad:</label>
+                            <input
+                                type="text"
+                                name="universidad"
+                                value={newStudent.universidad}
+                                disabled
+                                className="border border-gray-300 p-3 w-full rounded-md bg-gray-200 cursor-not-allowed"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label className="block mb-2 text-gray-700">Habilidades:</label>
+                            <input
+                                type="text"
+                                name="habilidades"
+                                value={newStudent.habilidades}
+                                onChange={handleStudentInputChange}
+                                required
+                                className="border border-gray-300 p-3 w-full rounded-md focus:outline-none focus:ring focus:ring-blue-300 transition duration-200"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label className="block mb-2 text-gray-700">Horas Completadas:</label>
+                            <input
+                                type="number"
+                                name="horasCompletadas"
+                                value={newStudent.horasCompletadas}
+                                onChange={handleStudentInputChange}
+                                required
+                                className="border border-gray-300 p-3 w-full rounded-md focus:outline-none focus:ring focus:ring-blue-300 transition duration-200"
+                            />
                         </div>
                     </div>
                     <button
                         type="submit"
-                        className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-200 col-span-2"
+                        className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 hover:shadow-lg transition-all duration-200"
                     >
                         Crear Estudiante
                     </button>
