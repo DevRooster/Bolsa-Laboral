@@ -1,153 +1,113 @@
-// src/components/AdminNavbar.jsx
-
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 const AdminNavbar = () => {
-  const navigate = useNavigate(); // Hook de React Router para redireccionar
+  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
-  // Función para manejar el cierre de sesión
   const handleLogout = () => {
-    // Eliminar el token de localStorage
-    localStorage.removeItem('authToken');
-
-    // Redirigir al usuario a la página de login
     navigate('/login/admin');
   };
 
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const toggleUserMenu = () => {
+    setIsUserMenuOpen(!isUserMenuOpen);
+  };
+
   return (
-    <nav className="bg-black p-4">
-      <ul className="flex justify-center space-x-6">
-        <li>
-          <NavLink
-            to="/admin/dashboard"
-            className={({ isActive }) =>
-              isActive ? 'text-white flex items-center space-x-2' : 'text-gray-400 flex items-center space-x-2'
-            }
-            style={{ transition: 'color 0.3s' }}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2L2 7h3v9h4V9h6v7h4V7h3L12 2z" />
-            </svg>
-            <span>Home</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/admin/dashboard/users"
-            className={({ isActive }) =>
-              isActive ? 'text-white flex items-center space-x-2' : 'text-gray-400 flex items-center space-x-2'
-            }
-            style={{ transition: 'color 0.3s' }}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 12c-2.21 0-4 1.79-4 4v3h8v-3c0-2.21-1.79-4-4-4z" />
-              <path d="M12 4a4 4 0 100 8 4 4 0 000-8z" />
-            </svg>
-            <span>Usuarios</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/admin/dashboard/empresa"
-            className={({ isActive }) =>
-              isActive ? 'text-white flex items-center space-x-2' : 'text-gray-400 flex items-center space-x-2'
-            }
-            style={{ transition: 'color 0.3s' }}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M4 4h16v2H4V4zm0 5h16v2H4V9zm0 5h16v2H4v-2zm0 5h16v2H4v-2z" />
-            </svg>
-            <span>Empresas</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/admin/dashboard/estudiante"
-            className={({ isActive }) =>
-              isActive ? 'text-white flex items-center space-x-2' : 'text-gray-400 flex items-center space-x-2'
-            }
-            style={{ transition: 'color 0.3s' }}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 12c-2.21 0-4 1.79-4 4v3h8v-3c0-2.21-1.79-4-4-4z" />
-              <path d="M12 4a4 4 0 100 8 4 4 0 000-8z" />
-            </svg>
-            <span>Estudiantes</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/admin/dashboard/notificacion"
-            className={({ isActive }) =>
-              isActive ? 'text-white flex items-center space-x-2' : 'text-gray-400 flex items-center space-x-2'
-            }
-            style={{ transition: 'color 0.3s' }}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-              <path d="M11 14h2v-2h-2v2zm0-4h2V7h-2v3z" />
-            </svg>
-            <span>Notificaciones</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/admin/dashboard/oferta"
-            className={({ isActive }) =>
-              isActive ? 'text-white flex items-center space-x-2' : 'text-gray-400 flex items-center space-x-2'
-            }
-            style={{ transition: 'color 0.3s' }}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M3 17v-1.5c0-.55.45-1 1-1h16c.55 0 1 .45 1 1V17H3zM12 3a2 2 0 00-2 2v2H7l5 5 5-5h-3V5a2 2 0 00-2-2z" />
-            </svg>
-            <span>Ofertas</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/admin/dashboard/postulacion"
-            className={({ isActive }) =>
-              isActive ? 'text-white flex items-center space-x-2' : 'text-gray-400 flex items-center space-x-2'
-            }
-            style={{ transition: 'color 0.3s' }}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-              <path d="M11 10h2v4h-2v-4zm0 6h2v-2h-2v2z" />
-            </svg>
-            <span>Postulación</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/admin/dashboard/seguimiento"
-            className={({ isActive }) =>
-              isActive ? 'text-white flex items-center space-x-2' : 'text-gray-400 flex items-center space-x-2'
-            }
-            style={{ transition: 'color 0.3s' }}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-              <path d="M16 10h-4v6h-2v-6H8V8h2V7.41c0-.89.68-1.41 1.41-1.41h3.18c.73 0 1.41.52 1.41 1.41V8h2v2z" />
-            </svg>
-            <span>Seguimiento</span>
-          </NavLink>
-        </li>
-        <li>
+    <nav className="bg-gray-900 p-4 shadow-md">
+      <div className="max-w-7xl mx-auto flex justify-between items-center">
+        {/* Menú de usuario */}
+        <div className="relative">
           <button
-            onClick={handleLogout} // Llama a la función de cierre de sesión
-            className="text-red-500 flex items-center space-x-2"
-            style={{ transition: 'color 0.3s' }}
+            onClick={toggleUserMenu}
+            className="text-white text-xl font-bold flex items-center space-x-2 focus:outline-none"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M16 13v-2H8V7l-5 5 5 5v-4h8zM19 3h-6v2h6v14h-6v2h6c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+            <span>Admin Panel</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
-            <span>Cerrar Sesión</span>
           </button>
-        </li>
-      </ul>
+          {isUserMenuOpen && (
+            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20">
+              <ul className="py-1 text-gray-700">
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100 hover:text-red-700 transition-colors"
+                  >
+                    Cerrar Sesión
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+
+        {/* Botón Hamburguesa (responsive) */}
+        <button
+          className="text-white md:hidden focus:outline-none"
+          onClick={toggleMenu}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+
+        {/* Menú de navegación */}
+        <ul
+          className={`flex-col md:flex-row md:flex md:space-x-6 lg:space-x-10 items-center space-y-4 md:space-y-0 mt-4 md:mt-0 transform ${
+            isOpen ? 'flex' : 'hidden'
+          } md:flex transition-all duration-300 ease-in-out`}
+        >
+          {[
+            { name: 'Home', icon: 'M12 2L2 7h3v9h4V9h6v7h4V7h3L12 2z', path: '/admin/dashboard' },
+            { name: 'Usuarios', icon: 'M12 12c-2.21 0-4 1.79-4 4v3h8v-3c0-2.21-1.79-4-4-4z M12 4a4 4 0 100 8 4 4 0 000-8z', path: '/admin/dashboard/users' },
+            { name: 'Empresas', icon: 'M4 4h16v2H4V4zm0 5h16v2H4V9zm0 5h16v2H4v-2zm0 5h16v2H4v-2z', path: '/admin/dashboard/empresa' },
+            { name: 'Estudiantes', icon: 'M12 12c-2.21 0-4 1.79-4 4v3h8v-3c0-2.21-1.79-4-4-4z M12 4a4 4 0 100 8 4 4 0 000-8z', path: '/admin/dashboard/estudiante' },
+            { name: 'Notificaciones', icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z M11 14h2v-2h-2v2zm0-4h2V7h-2v3z', path: '/admin/dashboard/notificacion' },
+            { name: 'Ofertas', icon: 'M10 17l6-6-6-6v12z', path: '/admin/dashboard/oferta' },
+            { name: 'Seguimiento', icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z', path: '/admin/dashboard/seguimiento' },
+          ].map((item) => (
+            <li key={item.name}>
+              <NavLink
+                to={item.path}
+                className={({ isActive }) =>
+                  isActive
+                    ? 'text-white flex items-center space-x-2'
+                    : 'text-gray-400 flex items-center space-x-2 hover:text-white transition-colors'
+                }
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d={item.icon} />
+                </svg>
+                <span className="text-sm md:text-base lg:text-lg">{item.name}</span>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   );
 };

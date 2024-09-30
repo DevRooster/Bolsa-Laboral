@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginAdmin from './pages/admin/LoginAdmin';
 import DashboardAdmin from './pages/admin/DashboardAdmin';
 import UsersCtrl from './pages/admin/UsersCtrl';
 import EmpresaCtrl from './pages/admin/EmpresaCtrl';
@@ -10,6 +9,7 @@ import PostulacionCtrl from './pages/admin/PostulacionCtrl';
 import SeguimientoCtrl from './pages/admin/SeguimientoCtrl';
 import LoginUser from './pages/users/LoginUser';
 import DashboardUser from './pages/users/DashboardUser';
+import LoginAdmin from './pages/admin/LoginAdmin';
 
 function App() {
   return (
