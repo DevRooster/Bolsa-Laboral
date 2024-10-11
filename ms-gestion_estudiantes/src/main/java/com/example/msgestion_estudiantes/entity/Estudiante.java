@@ -3,6 +3,7 @@ package com.example.msgestion_estudiantes.entity;
 import com.example.msgestion_estudiantes.dto.AuthUserDto;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Entity
@@ -14,6 +15,8 @@ public class Estudiante {
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
+    @Pattern(regexp = "//d{8}", message = "El DNI debe teer exactamente 8 digitos")
+    private Integer dni;
     private String carrera;
     private String universidad;
     private String habilidades;

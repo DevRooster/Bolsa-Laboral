@@ -7,16 +7,32 @@ import NotificacionCtrl from './pages/admin/NotificacionCtrl';
 import OfertaCtrl from './pages/admin/OfertaCtrl';
 import PostulacionCtrl from './pages/admin/PostulacionCtrl';
 import SeguimientoCtrl from './pages/admin/SeguimientoCtrl';
-import LoginUser from './pages/users/LoginUser';
 import DashboardUser from './pages/users/DashboardUser';
-import LoginAdmin from './pages/admin/LoginAdmin';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import HomeCli from './pages/HomeCli';
+import OfertasUser from './pages/users/OfertasUser';
+import PostulacionUser from './pages/users/PostulacionUser';
+import PerfilUser from './pages/PerfilUser';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login/admin" element={<LoginAdmin />} />
-        <Route path="/admin/dashboard" element={<DashboardAdmin />}>
+        {/*Rutas del Home*/}
+        <Route path='/' element={<HomeCli />} />
+        <Route path="/login" element={<Login />} />
+        <Route path='/register' element={<Register />} />
+
+        {/*Rutas del Usuario*/}
+        <Route path="/user" element={<DashboardUser />}>
+          <Route path='perfil' element={<PerfilUser />}/>
+          <Route path='ofertas' element={<OfertasUser />} />
+          <Route path='postulaciones' element={<PostulacionUser />} />
+        </Route>
+
+        {/*Rutas del Admin*/}
+        <Route path="/admin" element={<DashboardAdmin />}>
           <Route path="users" element={<UsersCtrl />} />
           <Route path="empresa" element={<EmpresaCtrl />} />
           <Route path="estudiante" element={<EstudianteCtrl />} />
@@ -25,10 +41,7 @@ function App() {
           <Route path="postulacion" element={<PostulacionCtrl />} />
           <Route path="seguimiento" element={<SeguimientoCtrl />} />
         </Route>
-        <Route path="/login/user" element={<LoginUser />} />
-        <Route path="/user/dashboard" element={<DashboardUser />}>
-        
-        </Route>
+
       </Routes>
     </Router>
   );
