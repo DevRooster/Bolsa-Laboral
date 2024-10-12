@@ -15,7 +15,6 @@ public class Estudiante {
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
-    @Pattern(regexp = "//d{8}", message = "El DNI debe teer exactamente 8 digitos")
     private Integer dni;
     private String carrera;
     private String universidad;
