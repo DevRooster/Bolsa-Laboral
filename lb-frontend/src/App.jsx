@@ -8,25 +8,26 @@ import OfertaCtrl from './pages/admin/OfertaCtrl';
 import PostulacionCtrl from './pages/admin/PostulacionCtrl';
 import SeguimientoCtrl from './pages/admin/SeguimientoCtrl';
 import DashboardUser from './pages/users/DashboardUser';
-import Login from './pages/Login';
-import Register from './pages/Register';
 import HomeCli from './pages/HomeCli';
 import OfertasUser from './pages/users/OfertasUser';
 import PostulacionUser from './pages/users/PostulacionUser';
-import PerfilUser from './pages/PerfilUser';
+import PerfilUser from './pages/users/PerfilUser';
+import OfertaCli from './pages/OfertaCli';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
     <Router>
       <Routes>
         {/*Rutas del Home*/}
-        <Route path='/' element={<HomeCli />} />
-        <Route path="/login" element={<Login />} />
-        <Route path='/register' element={<Register />} />
+        <Route path='/' element={<HomeCli />}>
+          <Route path='oferta' element={<OfertaCli />} />
+          <Route path="login" element={<LoginPage />} />
+        </Route>
 
         {/*Rutas del Usuario*/}
         <Route path="/user" element={<DashboardUser />}>
-          <Route path='perfil' element={<PerfilUser />}/>
+          <Route path='perfil' element={<PerfilUser />} />
           <Route path='ofertas' element={<OfertasUser />} />
           <Route path='postulaciones' element={<PostulacionUser />} />
         </Route>

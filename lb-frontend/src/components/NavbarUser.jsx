@@ -92,7 +92,7 @@ const NavbarUser = () => {
               </li>
               <li>
                 <NavLink
-                  to="/user/logout"
+                  to="/"
                   className="block px-4 py-2 text-red-500 hover:text-red-400 hover:bg-gray-700 rounded-md transform hover:scale-105 transition duration-200"
                 >
                   Cerrar Sesión

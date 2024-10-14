@@ -3,7 +3,6 @@ package com.example.msgestion_estudiantes.entity;
 import com.example.msgestion_estudiantes.dto.AuthUserDto;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Entity

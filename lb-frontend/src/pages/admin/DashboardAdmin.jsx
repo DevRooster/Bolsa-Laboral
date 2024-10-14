@@ -5,7 +5,7 @@ import { apiGet } from '../../services/api';
 
 const DashboardAdmin = () => {
   const location = useLocation();
-  const isDashboardRoot = location.pathname === '/admin/dashboard';
+  const isDashboardRoot = location.pathname === '/admin';
 
   const [userCount, setUserCount] = useState(0); // Estado para la cantidad de usuarios
   const [studentCount, setStudentCount] = useState(0); // Estado para la cantidad de estudiantes

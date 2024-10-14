@@ -7,7 +7,7 @@ const AdminNavbar = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   const handleLogout = () => {
-    navigate('/login/admin');
+    navigate('/');
   };
 
   const toggleMenu = () => {

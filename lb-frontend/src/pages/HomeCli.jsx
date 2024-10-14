@@ -1,70 +1,127 @@
-import React, { useEffect, useState } from 'react';
-import { apiGet } from '../services/api'; // Asegúrate de que esta función esté bien implementada
+import React, { useState, useEffect } from 'react';
 import NavbarStandar from '../components/NavbarStandar';
+import { Outlet, useLocation } from 'react-router-dom';
+
+// Importación de imágenes
+import oportunidadesLaborales from '../images/oportunidades_laborales.png';
+import desarrolloProfesional from '../images/desarrollo_profesional.png';
+import crecimientoCarrera from '../images/crecimiento_carrera.png';
+import apoyoEstudiantes from '../images/apoyo_estudiantes.png';
+import practicasEmpleos from '../images/practicas_empleos.png';
+import elegirOferta from '../images/elegir_oferta.png';
+import crear_usuario from '../images/crear_usuario.png'; // Importación añadida
+
+// Datos de los anuncios laborales
+const jobAds = [
+  { id: 1, text: "Las mejores oportunidades te están esperando.", imageUrl: oportunidadesLaborales },
+  { id: 2, text: "Invierte en ti mismo, desarrolla tus habilidades.", imageUrl: desarrolloProfesional },
+  { id: 3, text: "Da el siguiente paso en tu carrera con nosotros.", imageUrl: crecimientoCarrera },
+  { id: 4, text: "Estamos aquí para ayudarte a encontrar tu camino.", imageUrl: apoyoEstudiantes },
+  { id: 5, text: "Las prácticas son el primer paso hacia el éxito profesional.", imageUrl: practicasEmpleos }
+];
 
 const HomeCli = () => {
-    const [offers, setOffers] = useState([]); // Estado para almacenar las ofertas
-    const [error, setError] = useState(''); // Estado para manejar errores
+  const location = useLocation();
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-    // Función para obtener las ofertas de la API
-    const fetchOffers = async () => {
-        try {
-            const data = await apiGet('/oferta');
-            setOffers(data); // Almacenar las ofertas en el estado
-        } catch (error) {
-            setError('Error al obtener las ofertas');
-            console.error(error);
-        }
-    };
+  // Verificamos si la ruta actual es la ruta de inicio
+  const isHomePath = location.pathname === '/';
 
-    // Llamar a la API cuando el componente se monte
-    useEffect(() => {
-        fetchOffers();
-    }, []);
-    return (
-        <div>
-            {/* Agrega el NavbarStandar aquí */}
-            <NavbarStandar />
+  // Cambia el slide
+  const nextSlide = () => setCurrentIndex((prevIndex) => (prevIndex + 1) % jobAds.length);
+  const prevSlide = () => setCurrentIndex((prevIndex) => (prevIndex - 1 + jobAds.length) % jobAds.length);
 
-            {/* Contenido del catálogo de ofertas */}
-            <div className="p-6">
-                <h1 className="text-3xl font-semibold mb-6 text-center text-gray-800">Catálogo de Ofertas</h1>
+  // Configuración del temporizador para cambiar las imágenes del slider
+  useEffect(() => {
+    const intervalId = setInterval(nextSlide, 5000); // Cambiar cada 5 segundos
 
-                {/* Mostrar error si no se pudieron obtener las ofertas */}
-                {error && <div className="text-red-600 text-center mb-4">{error}</div>}
+    return () => clearInterval(intervalId); // Limpiar el intervalo al desmontar el componente
+  }, []);
 
-                {/* Contenedor de las ofertas */}
-                <div className="flex flex-wrap justify-center gap-6">
-                    {/* Mapear las ofertas y mostrarlas en tarjetas */}
-                    {offers.length > 0 ? (
-                        offers.map((offer) => (
-                            <div
-                                key={offer.id}
-                                className="w-72 p-6 border border-gray-300 rounded-lg shadow-md bg-white transform transition-transform duration-200 hover:scale-105"
-                            >
-                                <h2 className="text-xl font-bold text-gray-700 mb-2">{offer.titulo}</h2>
-                                <p className="text-gray-600 mb-2">{offer.descripcion}</p>
-                                <p className="text-gray-500 mb-1">
-                                    <strong>Ubicación:</strong> {offer.ubicacion}
-                                </p>
-                                <p className="text-gray-500 mb-1">
-                                    <strong>Duración:</strong> {offer.duracion}
-                                </p>
-                                <p className="text-gray-500 mb-1">
-                                    <strong>Tipo de Practicante:</strong> {offer.tipoPracticante}
-                                </p>
-                                <p className="text-gray-500 mb-1">
-                                    <strong>Empresa:</strong> {offer.empresaDto?.nombre || 'Sin Empresa'}
-                                </p>
-                            </div>
-                        ))
-                    ) : (
-                        <p className="text-center text-gray-600">No se encontraron ofertas</p>
-                    )}
+  return (
+    <div className="bg-gradient-to-r from-indigo-50 to-purple-100 min-h-screen relative">
+      <NavbarStandar />
+
+      {/* Ajuste para el contenido debajo del navbar fijo */}
+      <div className="pt-16"> {/* Asegúrate de que el valor de pt sea suficiente para el navbar */}
+        {/* Muestra el contenido solo si estamos en la ruta de inicio */}
+        {isHomePath && (
+          <>
+            <h2 className="text-center text-5xl font-bold text-gray-800 animate-bounce mt-8">
+              Bienvenido a la Bolsa Laboral
+            </h2>
+
+            {/* Slider principal */}
+            <div className="relative flex justify-center mt-10 z-0">
+              <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden max-w-2xl w-full transition-transform duration-500 transform hover:scale-105">
+                <img
+                  src={jobAds[currentIndex].imageUrl}
+                  alt={jobAds[currentIndex].text}
+                  className="w-full h-80 object-cover rounded-t-2xl transition-transform duration-700 transform hover:scale-110"
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white font-semibold text-center text-2xl transition-opacity duration-700">
+                  <p className="animate-fade-in-up">{jobAds[currentIndex].text}</p>
                 </div>
-            </div>
-        </div>
-    )
-}
+              </div>
 
-export default HomeCli
+              {/* Botones de Navegación */}
+              <button
+                onClick={prevSlide}
+                className="absolute top-1/2 left-6 transform -translate-y-1/2 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-full p-3 shadow-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300"
+              >
+                &#10094; {/* Icono de flecha izquierda */}
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute top-1/2 right-6 transform -translate-y-1/2 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-full p-3 shadow-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300"
+              >
+                &#10095; {/* Icono de flecha derecha */}
+              </button>
+            </div>
+
+            {/* Indicadores de Paginación */}
+            <div className="flex justify-center mt-4 space-x-2 z-10">
+              {jobAds.map((_, index) => (
+                <div
+                  key={index}
+                  className={`w-3 h-3 rounded-full ${currentIndex === index ? 'bg-indigo-500' : 'bg-indigo-300'} transition-colors duration-300`}
+                />
+              ))}
+            </div>
+
+            {/* Tarjeta de Elegir Oferta en fila */}
+            <div className="flex justify-center mt-12 px-4 z-10 mb-8">
+              <div className="flex space-x-4">
+                <div className="relative bg-white rounded-lg shadow-xl overflow-hidden w-72 transition-transform duration-500 transform hover:scale-105">
+                  <img
+                    src={elegirOferta}
+                    alt="Elegir Oferta"
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white font-bold text-center text-xl">
+                    <p>Explora y elige la oferta laboral perfecta para ti</p>
+                  </div>
+                </div>
+
+                {/* Tarjeta de Crear Usuario */}
+                <div className="relative bg-white rounded-lg shadow-xl overflow-hidden w-72 transition-transform duration-500 transform hover:scale-105">
+                  <img
+                    src={crear_usuario}
+                    alt="Crear Usuario"
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white font-bold text-center text-xl">
+                    <p>Crea tu cuenta y empieza tu camino laboral</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+      <Outlet />
+    </div>
+  );
+};
+
+export default HomeCli;
