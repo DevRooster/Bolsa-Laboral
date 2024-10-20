@@ -100,12 +100,12 @@ const OfertaUser = () => {
   if (error) return <div className="text-center mt-4 text-red-500">{error}</div>;
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-200 p-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {ofertas.map(oferta => (
           <div 
             key={oferta.id} 
-            className="bg-gray-700 text-white shadow-lg rounded-lg p-6 border border-gray-800 cursor-pointer hover:bg-gray-600 transition duration-200"
+            className="bg-gray-700 text-white shadow-lg rounded-lg p-6 border border-gray-800 cursor-pointer hover:bg-gray-600 transition duration-200 transform hover:scale-105"
             onClick={() => handleSelect(oferta)}
           >
             <h2 className="text-2xl font-semibold mb-4">{oferta.titulo}</h2>
@@ -136,7 +136,7 @@ const OfertaUser = () => {
                     value={dni} 
                     onChange={(e) => setDni(e.target.value)} 
                     placeholder="Ingrese DNI" 
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-300 transition duration-200"
                   />
                   <button 
                     type="button" 

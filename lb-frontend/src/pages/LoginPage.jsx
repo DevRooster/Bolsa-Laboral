@@ -18,25 +18,26 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      // Realizar la solicitud a la API de autenticación
       const data = {
         userName: username,
         password: password,
       };
-
-      const response = await apiPost('/auth/login', data); // Usar apiPost para la solicitud
-
-      // Imprime la respuesta de la API para depurar
-      console.log('Respuesta de la API:', response);
-
-      const { role, token } = response; // Asegúrate de que el token y el rol estén en la respuesta correcta
-
-      // Almacenar el token en localStorage
+  
+      const response = await apiPost('/auth/login', data);
+  
+      // Asegúrate de que la API devuelva el authUserId
+      console.log('Respuesta de la API (Login):', response);
+  
+      const { role, token, authUserId } = response; // Asegúrate de extraer authUserId
+  
+      // Almacenar el token y el authUserId en localStorage
       localStorage.setItem('token', token);
-
-      // Redirigir según el rol del usuario
+      localStorage.setItem('userId', authUserId);  // Aquí se guarda authUserId correctamente
+  
+      console.log('authUserId guardado en localStorage:', authUserId);
+  
       if (role === 'USER_ADMIN') {
         navigate('/admin');
       } else if (role === 'USER_DEFAULT') {
@@ -44,10 +45,7 @@ const LoginPage = () => {
       }
     } catch (error) {
       console.error('Error en el inicio de sesión:', error);
-
-      // Verifica el error y muestra un mensaje adecuado
       if (error.response) {
-        console.error('Detalles del error:', error.response.data);
         alert(`Error: ${error.response.data.message || 'Usuario o contraseña incorrectos'}`);
       } else {
         alert('Usuario o contraseña incorrectos');
@@ -132,13 +130,13 @@ const LoginPage = () => {
           {/* Sección de creación de cuenta */}
           <div className="mt-4 flex justify-center">
             <ul className="list-disc text-gray-300">
-    
-                <button
-                  onClick={handleCreateAccount}
-                  className="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105"
-                >
-                  Crear Cuenta
-                </button>
+
+              <button
+                onClick={handleCreateAccount}
+                className="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105"
+              >
+                Crear Cuenta
+              </button>
 
             </ul>
           </div>

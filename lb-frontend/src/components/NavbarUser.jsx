@@ -20,7 +20,7 @@ const NavbarUser = () => {
   ];
 
   return (
-    <nav className="bg-gray-900 p-4 shadow-lg relative">
+    <nav className="bg-gray-900 fixed top-0 left-0 right-0 p-4 shadow-lg z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Título */}
         <div className="text-neon-green text-2xl font-bold"></div>
@@ -72,7 +72,7 @@ const NavbarUser = () => {
             <ul className="absolute right-0 mt-2 w-48 bg-gray-800 text-white shadow-lg rounded-md z-20">
               <li>
                 <NavLink
-                  to="/user/profile/view"
+                  to="/user/perfil"
                   className={({ isActive }) =>
                     `block px-4 py-2 rounded-md ${isActive ? 'bg-gray-700' : 'hover:bg-gray-700'} transform hover:scale-105 transition duration-200`
                   }
