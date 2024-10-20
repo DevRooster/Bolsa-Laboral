@@ -16,40 +16,42 @@ const DashboardUser = () => {
     const isDashUserPath = location.pathname === '/user';
 
     return (
-        <div>
+        <div className="bg-gray-100 min-h-screen">
             <NavbarUser />
-            {isDashUserPath && <h2 className="text-2xl font-bold text-center mt-4">Dashboard User</h2>}
-            <div className="flex flex-wrap justify-center mt-4 p-4">
-                {/* Cuadrícula de imágenes */}
-                <div className="m-4 p-4 shadow-lg rounded-lg bg-white text-center">
-                    <img src={oportunidadesLaborales} alt="Oportunidades Laborales" className="h-32 w-auto mx-auto mb-2" />
-                    <h3 className="font-semibold">Oportunidades Laborales</h3>
+            {isDashUserPath && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-10 mt-10"> {/* Se añadió mt-10 aquí */}
+                    <div className="flex flex-col items-center justify-center bg-white shadow-lg rounded-lg p-4 transition-transform transform hover:scale-105">
+                        <img src={oportunidadesLaborales} alt="Oportunidades Laborales" className="h-32 w-auto mb-2" />
+                        <h3 className="font-semibold text-lg text-gray-700">Oportunidades Laborales</h3>
+                    </div>
+                    <div className="flex flex-col items-center justify-center bg-white shadow-lg rounded-lg p-4 transition-transform transform hover:scale-105">
+                        <img src={desarrolloProfesional} alt="Desarrollo Profesional" className="h-32 w-auto mb-2" />
+                        <h3 className="font-semibold text-lg text-gray-700">Desarrollo Profesional</h3>
+                    </div>
+                    <div className="flex flex-col items-center justify-center bg-white shadow-lg rounded-lg p-4 transition-transform transform hover:scale-105">
+                        <img src={crecimientoCarrera} alt="Crecimiento Carrera" className="h-32 w-auto mb-2" />
+                        <h3 className="font-semibold text-lg text-gray-700">Crecimiento Carrera</h3>
+                    </div>
+                    <div className="flex flex-col items-center justify-center bg-white shadow-lg rounded-lg p-4 transition-transform transform hover:scale-105">
+                        <img src={apoyoEstudiantes} alt="Apoyo Estudiantes" className="h-32 w-auto mb-2" />
+                        <h3 className="font-semibold text-lg text-gray-700">Apoyo Estudiantes</h3>
+                    </div>
+                    <div className="flex flex-col items-center justify-center bg-white shadow-lg rounded-lg p-4 transition-transform transform hover:scale-105">
+                        <img src={practicasEmpleos} alt="Prácticas y Empleos" className="h-32 w-auto mb-2" />
+                        <h3 className="font-semibold text-lg text-gray-700">Prácticas y Empleos</h3>
+                    </div>
+                    <div className="flex flex-col items-center justify-center bg-white shadow-lg rounded-lg p-4 transition-transform transform hover:scale-105">
+                        <img src={elegirOferta} alt="Elegir Oferta" className="h-32 w-auto mb-2" />
+                        <h3 className="font-semibold text-lg text-gray-700">Elegir Oferta</h3>
+                    </div>
+                    <div className="flex flex-col items-center justify-center bg-white shadow-lg rounded-lg p-4 transition-transform transform hover:scale-105">
+                        <img src={crear_usuario} alt="Crear Usuario" className="h-32 w-auto mb-2" />
+                        <h3 className="font-semibold text-lg text-gray-700">Crear Usuario</h3>
+                    </div>
                 </div>
-                <div className="m-4 p-4 shadow-lg rounded-lg bg-white text-center">
-                    <img src={desarrolloProfesional} alt="Desarrollo Profesional" className="h-32 w-auto mx-auto mb-2" />
-                    <h3 className="font-semibold">Desarrollo Profesional</h3>
-                </div>
-                <div className="m-4 p-4 shadow-lg rounded-lg bg-white text-center">
-                    <img src={crecimientoCarrera} alt="Crecimiento Carrera" className="h-32 w-auto mx-auto mb-2" />
-                    <h3 className="font-semibold">Crecimiento Carrera</h3>
-                </div>
-                <div className="m-4 p-4 shadow-lg rounded-lg bg-white text-center">
-                    <img src={apoyoEstudiantes} alt="Apoyo Estudiantes" className="h-32 w-auto mx-auto mb-2" />
-                    <h3 className="font-semibold">Apoyo Estudiantes</h3>
-                </div>
-                <div className="m-4 p-4 shadow-lg rounded-lg bg-white text-center">
-                    <img src={practicasEmpleos} alt="Prácticas y Empleos" className="h-32 w-auto mx-auto mb-2" />
-                    <h3 className="font-semibold">Prácticas y Empleos</h3>
-                </div>
-                <div className="m-4 p-4 shadow-lg rounded-lg bg-white text-center">
-                    <img src={elegirOferta} alt="Elegir Oferta" className="h-32 w-auto mx-auto mb-2" />
-                    <h3 className="font-semibold">Elegir Oferta</h3>
-                </div>
-                <div className="m-4 p-4 shadow-lg rounded-lg bg-white text-center">
-                    <img src={crear_usuario} alt="Crear Usuario" className="h-32 w-auto mx-auto mb-2" />
-                    <h3 className="font-semibold">Crear Usuario</h3>
-                </div>
-            </div>
+            )}
+
+            {/* Outlet para renderizar rutas hijas */}
             <Outlet />
         </div>
     );
