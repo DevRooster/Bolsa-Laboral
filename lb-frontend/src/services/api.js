@@ -1,5 +1,4 @@
 // src/services/api.js
-
 import axios from 'axios';
 
 // URL base constante
@@ -8,24 +7,25 @@ const API_URL = "http://localhost:8080";
 // Configuración de Axios
 const axiosInstance = axios.create({
   baseURL: API_URL,
-  timeout: 10000, // Timeout de 10 segundos
+  headers: {
+    'Content-Type': 'application/json',
+    // 'Authorization': `Bearer ${token}` // Si necesitas autorización
+  },
 });
 
 // Manejo de errores
 const handleError = (error) => {
-  // Log del error para la depuración
   console.error('Error en la solicitud:', error);
   
-  // Manejo de error de respuesta
   if (error.response) {
-    // Si la respuesta es un error (código 4xx o 5xx)
-    return error.response.data?.message || 'Error en la solicitud';
+    return {
+      message: error.response.data?.message || 'Error en la solicitud',
+      status: error.response.status,
+    };
   } else if (error.request) {
-    // Si no se recibe respuesta del servidor
-    return 'No se recibió respuesta del servidor';
+    return { message: 'No se recibió respuesta del servidor', status: null };
   } else {
-    // Error al configurar la solicitud
-    return error.message;
+    return { message: error.message, status: null };
   }
 };
 
@@ -35,7 +35,7 @@ export const apiPost = async (endpoint, data) => {
     const response = await axiosInstance.post(endpoint, data);
     return response.data; // Retorna la respuesta
   } catch (error) {
-    throw new Error(handleError(error)); // Usar la función de manejo de errores
+    throw new Error(handleError(error).message); // Usar la función de manejo de errores
   }
 };
 
@@ -45,7 +45,7 @@ export const apiGet = async (endpoint) => {
     const response = await axiosInstance.get(endpoint);
     return response.data;
   } catch (error) {
-    throw new Error(handleError(error)); // Usar la función de manejo de errores
+    throw new Error(handleError(error).message); // Usar la función de manejo de errores
   }
 };
 
@@ -55,7 +55,7 @@ export const apiPut = async (endpoint, data) => {
     const response = await axiosInstance.put(endpoint, data);
     return response.data;
   } catch (error) {
-    throw new Error(handleError(error)); // Usar la función de manejo de errores
+    throw new Error(handleError(error).message); // Usar la función de manejo de errores
   }
 };
 
@@ -65,7 +65,7 @@ export const apiDelete = async (endpoint) => {
     const response = await axiosInstance.delete(endpoint);
     return response.data;
   } catch (error) {
-    throw new Error(handleError(error)); // Usar la función de manejo de errores
+    throw new Error(handleError(error).message); // Usar la función de manejo de errores
   }
 };
 
