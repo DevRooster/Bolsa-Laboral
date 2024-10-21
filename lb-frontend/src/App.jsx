@@ -14,6 +14,7 @@ import PostulacionUser from './pages/users/PostulacionUser';
 import PerfilUser from './pages/users/PerfilUser';
 import OfertaCli from './pages/OfertaCli';
 import LoginPage from './pages/LoginPage';
+import NotificacionUser from './pages/users/NotificacionUser';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path='perfil' element={<PerfilUser />} />
           <Route path='ofertas' element={<OfertasUser />} />
           <Route path='postulaciones' element={<PostulacionUser />} />
+          <Route path='notificaciones' element={<NotificacionUser />} />
         </Route>
 
         {/*Rutas del Admin*/}
