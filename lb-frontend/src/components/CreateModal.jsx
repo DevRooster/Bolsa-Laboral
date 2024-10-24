@@ -134,9 +134,9 @@ const CreateModal = ({ isOpen, onClose }) => {
             {isStudentFormVisible && (
                 <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center">
                     <div className="bg-gray-800 rounded-lg shadow-xl p-6 max-w-lg w-full"> {/* Cambiado a max-w-lg para un mejor ancho */}
-                        <h3 className="text-lg font-semibold text-white mb-4">Crear Estudiante</h3>
+                        <h3 className="text-lg font-semibold text-white mb-4">Datos Personales</h3>
                         {createdUserName && (
-                            <p className="text-white mb-4">Usuario creado: {createdUserName}</p>
+                            <p className="text-white mb-4"><strong>Usuario:</strong> {createdUserName}</p>
                         )}
                         <form onSubmit={handleStudentSubmit} className="grid grid-cols-1 gap-4">
                             <div className="grid grid-cols-3 gap-4">
@@ -193,24 +193,13 @@ const CreateModal = ({ isOpen, onClose }) => {
                                         value={newStudent.carrera}
                                         onChange={handleStudentInputChange}
                                         required
-                                        className="border border-gray-600 p-3 w-full rounded-md focus:outline-none focus:ring focus:ring-blue-300 text-gray-800"
+                                        className="border border-gray-600 p-3 w-6/6 rounded-md focus:outline-none focus:ring focus:ring-blue-300 text-gray-800"
                                     >
                                         <option value="">Seleccionar</option>
                                         <option value="Ingeniería de Sistemas">Ingeniería de Sistemas</option>
                                         <option value="Ingeniería Civil">Ingeniería Civil</option>
                                         <option value="Ingeniería Ambiental">Ingeniería Ambiental</option>
                                     </select>
-                                </div>
-                                <div className="mb-4">
-                                    <label className="block text-gray-300">Horas Completadas:</label>
-                                    <input
-                                        type="number"
-                                        name="horasCompletadas"
-                                        value={newStudent.horasCompletadas}
-                                        onChange={handleStudentInputChange}
-                                        required
-                                        className="border border-gray-600 p-3 w-full rounded-md focus:outline-none focus:ring focus:ring-blue-300 text-gray-800"
-                                    />
                                 </div>
                             </div>
                             <div className="mb-4">
